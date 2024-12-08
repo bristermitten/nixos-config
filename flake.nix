@@ -8,9 +8,11 @@
     nixconfig.inputs.nixpkgs.follows = "nixpkgs";
 
     sandkasten.url = "github:Defelo/sandkasten/latest";
+
+    determinate.url = "https://flakehub.com/f/DeterminateSystems/determinate/0.1";
   };
 
-  outputs = { self, nixconfig, nixpkgs, sandkasten, ... }@inputs:
+  outputs = { self, nixconfig, nixpkgs, sandkasten, determinate, ... }@inputs:
    let
       # Define the system (adjust as needed)
       system = "x86_64-linux";
@@ -26,7 +28,9 @@
         specialArgs = {inherit sandkasten; inherit pkgs; };
 
         modules = [ 
-nixconfig.nixosConfigurations.vmi2319146.config
+        determinate.nixosModules.default
+
+        nixconfig.nixosConfigurations.vmi2319146.config
         ./sandkasten.nix
         ];
       };
