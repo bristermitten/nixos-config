@@ -1,40 +1,28 @@
 {
-  description = "A very basic flake";
+  description = "A home-manager template providing useful tools & settings for Nix-based development";
 
   inputs = {
-    nixpkgs.url = "github:nixos/nixpkgs?ref=nixos-unstable";
+    # Principle inputs (updated by `nix run .#update`)
+    nixpkgs.url = "github:nixos/nixpkgs/nixos-unstable";
+    nix-darwin.url = "github:LnL7/nix-darwin";
+    nix-darwin.inputs.nixpkgs.follows = "nixpkgs";
+    home-manager.url = "github:nix-community/home-manager";
+    home-manager.inputs.nixpkgs.follows = "nixpkgs";
+    flake-parts.url = "github:hercules-ci/flake-parts";
+    nixos-unified.url = "github:srid/nixos-unified";
 
-    nixconfig.url = "github:bristermitten/nix-dotfiles";
-    nixconfig.inputs.nixpkgs.follows = "nixpkgs";
+    # Software inputs
+    nix-index-database.url = "github:nix-community/nix-index-database";
+    nix-index-database.inputs.nixpkgs.follows = "nixpkgs";
+    nixvim.url = "github:nix-community/nixvim";
+    nixvim.inputs.nixpkgs.follows = "nixpkgs";
+    nixvim.inputs.flake-parts.follows = "flake-parts";
 
     sandkasten.url = "github:Defelo/sandkasten/latest";
-
-    determinate.url = "https://flakehub.com/f/DeterminateSystems/determinate/0.1";
   };
 
-  outputs = { self, nixconfig, nixpkgs, sandkasten, determinate, ... }@inputs:
-   let
-      # Define the system (adjust as needed)
-      system = "x86_64-linux";
-
-      # Create pkgs for the system
-      pkgs = nixpkgs.legacyPackages.${system};
-    in
-    {
-
-      inherit (nixconfig) packages formatter;
-      nixosConfigurations.vmi2319146 = nixpkgs.lib.nixosSystem {
-        system = "x86_64-linux";
-        specialArgs = {inherit sandkasten; inherit pkgs; };
-
-        modules = [ 
-        determinate.nixosModules.default
-
-        nixconfig.nixosConfigurations.vmi2319146.config
-        ./sandkasten.nix
-        ];
-      };
-
-    };
-
+  # Wired using https://nixos-unified.org/autowiring.html
+  outputs = inputs:
+    inputs.nixos-unified.lib.mkFlake
+      { inherit inputs; root = ./.; };
 }
