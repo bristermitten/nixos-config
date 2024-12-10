@@ -8,7 +8,11 @@ let
 in
 {
 
-  
+  imports =
+    with builtins;
+    map
+      (fn: ./${fn})
+      (filter (fn: fn != "default.nix") (attrNames (readDir ./.))); 
   # These users can add Nix caches.
   nix.settings.trusted-users = [ "root" "alex" ];
 
