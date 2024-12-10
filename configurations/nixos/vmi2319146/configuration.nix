@@ -1,5 +1,5 @@
 # NOTE: We expect this file to be supplanted by the original /etc/nixos/configuration.nix
-{ ...} : {
+{ ... }: {
   # These are normally in hardware-configuration.nix
   # imports = [ (modulesPath + "/profiles/qemu-guest.nix") ];
   boot.loader.grub.device = "/dev/sda";

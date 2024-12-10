@@ -1,7 +1,7 @@
 { flake, pkgs, lib, ... }: {
-    imports = [flake.inputs.sandkasten.nixosModules.sandkasten];
+  imports = [ flake.inputs.sandkasten.nixosModules.sandkasten ];
 
-    services.sandkasten = {
+  services.sandkasten = {
     enable = true;
 
     environments = p: with p; [ all ];
@@ -28,5 +28,5 @@
         network = false;
       };
     };
-  }; 
+  };
 }
