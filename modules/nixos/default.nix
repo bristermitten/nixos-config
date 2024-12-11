@@ -17,4 +17,7 @@ in
   nix.settings.trusted-users = [ "root" "alex" ];
 
   services.openssh.enable = true;
+
+  users.defaultUserShell = pkgs.zsh;
+  programs.zsh.enable = true;
 }
