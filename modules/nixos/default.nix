@@ -20,4 +20,9 @@ in
 
   users.defaultUserShell = pkgs.zsh;
   programs.zsh.enable = true;
+
+  age.identityPaths = [
+    "/home/alex/.ssh/id_ed25519"
+    "/root/.ssh/id_ed25519"
+  ];
 }

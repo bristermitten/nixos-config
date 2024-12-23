@@ -19,6 +19,12 @@
     nixvim.inputs.flake-parts.follows = "flake-parts";
 
     sandkasten.url = "github:Defelo/sandkasten/latest";
+
+    agenix.url = "github:ryantm/agenix";
+    agenix.inputs.nixpkgs.follows = "nixpkgs";
+    agenix.inputs.darwin.follows = "";
+
+    vscode-server.url = "github:nix-community/nixos-vscode-server";
   };
 
   # Wired using https://nixos-unified.org/autowiring.html
