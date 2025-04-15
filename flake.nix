@@ -25,6 +25,8 @@
     agenix.inputs.darwin.follows = "";
 
     vscode-server.url = "github:nix-community/nixos-vscode-server";
+
+    atticd.url = "github:zhaofengli/attic";
   };
 
   # Wired using https://nixos-unified.org/autowiring.html
