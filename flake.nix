@@ -4,12 +4,10 @@
   inputs = {
     # Principle inputs (updated by `nix run .#update`)
     nixpkgs.url = "github:nixos/nixpkgs/nixos-unstable";
-    nix-darwin.url = "github:LnL7/nix-darwin";
-    nix-darwin.inputs.nixpkgs.follows = "nixpkgs";
     home-manager.url = "github:nix-community/home-manager";
     home-manager.inputs.nixpkgs.follows = "nixpkgs";
     flake-parts.url = "github:hercules-ci/flake-parts";
-    nixos-unified.url = "github:srid/nixos-unified";
+    nixos-unified.url = "github:srid/nixos-unified/master";
 
     # Software inputs
     nix-index-database.url = "github:nix-community/nix-index-database";
@@ -22,11 +20,13 @@
 
     agenix.url = "github:ryantm/agenix";
     agenix.inputs.nixpkgs.follows = "nixpkgs";
-    agenix.inputs.darwin.follows = "";
 
     vscode-server.url = "github:nix-community/nixos-vscode-server";
 
     atticd.url = "github:zhaofengli/attic";
+
+      disko.url = "github:nix-community/disko";
+  disko.inputs.nixpkgs.follows = "nixpkgs";
   };
 
   # Wired using https://nixos-unified.org/autowiring.html
