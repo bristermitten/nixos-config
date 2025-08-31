@@ -40,4 +40,13 @@
   boot.kernelParams = [ "boot.shell_on_fail" ];
 
 
+# define alex user
+ # For home-manager to work.
+  # https://github.com/nix-community/home-manager/issues/4026#issuecomment-1565487545
+  users.users."alex" = {
+    isNormalUser = true;
+    extraGroups = [ "wheel" ];
+  };
+  users.users.alex.openssh.authorizedKeys.keys = [ ''ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIPNPRzSLlLpDQwA9QpurZnREyON6z9wHiNJ9tZexFmgh alex@Alexs-MacBook-Pro.local'' ];
+
 }
