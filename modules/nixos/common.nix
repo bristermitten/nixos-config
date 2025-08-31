@@ -39,10 +39,5 @@
   boot.initrd.kernelModules = [ "nvme" "dm-snapshot" ];
   boot.kernelParams = [ "boot.shell_on_fail" ];
 
-  # Garbage collect the Nix store
-  nix.gc = {
-    automatic = true;
-    dates = "weekly";
-    options = "--delete-older-than 30d";
-  };
+
 }
