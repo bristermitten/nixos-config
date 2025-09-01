@@ -11,4 +11,10 @@ in
     self.nixosModules.default
     ./configuration.nix
   ];
+
+  
+  # Enable home-manager for "alex" user
+  home-manager.users."alex" = {
+    imports = [ (self + /configurations/home/alex.nix) ];
+  };
 }
